@@ -1,28 +1,32 @@
 {
-    "name": "jquery-file-upload-middleware",
-    "author": {
-        "name": "Aleksandr Guidrevitch",
-        "email": "aguidrevitch@gmail.com"
-    },
-    "description": "jQuery-File-Upload Express.js Middleware",
-    "keywords": [
-       "jquery",
-       "upload",
-       "express",
-       "middleware"
-    ],
-    "version": "0.0.1",
-    "dependencies": {
-        "formidable": ">=1.0.11",
-        "imagemagick": ">=0.1.2",
-        "lodash": ">= 0.9.2"
-    },
-    "engines": {
-        "node": ">= 0.8.8"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/aguidrevitch/jquery-file-upload-middleware.git"
-    },
-    "main": "./index.js"
+  "name": "jquery-file-upload-middleware",
+  "author": "Aleksandr Guidrevitch <aguidrevitch@gmail.com>",
+  "description": "jQuery-File-Upload Express.js Middleware",
+  "keywords": [
+    "jquery",
+    "upload",
+    "express",
+    "middleware"
+  ],
+  "version": "0.0.1",
+  "dependencies": {
+    "formidable": ">=1.0.11",
+    "imagemagick": ">=0.1.2",
+    "lodash": ">= 0.9.2"
+  },
+  "engines": {
+    "node": ">= 0.8.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aguidrevitch/jquery-file-upload-middleware.git"
+  },
+  "main": "./index.js",
+  "readmeFilename": "README.md",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "_id": "jquery-file-upload-middleware@0.0.1",
+  "license": "MIT"
 }
