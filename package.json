@@ -1,6 +1,16 @@
 {
     "name": "jquery-file-upload-middleware",
-    "description": "http://aguidrevitch.blogspot.com",
+    "author": {
+        "name": "Aleksandr Guidrevitch",
+        "email": "aguidrevitch@gmail.com"
+    },
+    "description": "jQuery-File-Upload Express.js Middleware",
+    "keywords": [
+       "jquery",
+       "upload",
+       "express",
+       "middleware"
+    ],
     "version": "0.0.1",
     "dependencies": {
         "formidable": ">=1.0.11",
@@ -9,6 +19,10 @@
     },
     "engines": {
         "node": ">= 0.8.8"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/aguidrevitch/jquery-file-upload-middleware.git"
     },
     "main": "./index.js"
 }
