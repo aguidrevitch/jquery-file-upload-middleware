@@ -162,20 +162,39 @@ module.exports = function (options) {
                         fs.unlink(file.path);
                         return;
                     }
-                    fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
-                    if (options.imageTypes.test(fileInfo.name) && _.keys(options.imageVersions).length) {
-                        Object.keys(options.imageVersions).forEach(function (version) {
-                            if (!_existsSync(options.uploadDir + '/' + version + '/'))
-                                throw new Error(options.uploadDir + '/' + version + '/' + ' not exists');
-                            counter++;
-                            var opts = options.imageVersions[version];
-                            imageMagick.resize({
-                                width: opts.width,
-                                height: opts.height,
-                                srcPath: options.uploadDir + '/' + fileInfo.name,
-                                dstPath: options.uploadDir + '/' + version + '/' + fileInfo.name
-                            }, finish);
+
+                    var generatePreviews = function () {
+                        if (options.imageTypes.test(fileInfo.name) && _.keys(options.imageVersions).length) {
+                            Object.keys(options.imageVersions).forEach(function (version) {
+                                if (!_existsSync(options.uploadDir + '/' + version + '/'))
+                                    throw new Error(options.uploadDir + '/' + version + '/' + ' not exists');
+                                counter++;
+                                var opts = options.imageVersions[version];
+                                imageMagick.resize({
+                                    width: opts.width,
+                                    height: opts.height,
+                                    srcPath: options.uploadDir + '/' + fileInfo.name,
+                                    dstPath: options.uploadDir + '/' + version + '/' + fileInfo.name
+                                }, finish);
+                            });
+                        }
+                    }
+
+                    try {
+                        fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
+                        generatePreviews();
+                    } catch (e) {
+                        counter++;
+                        var is = fs.createReadStream(file.path);
+                        var os = fs.createWriteStream(options.uploadDir + '/' + fileInfo.name);
+                        is.on('end', function(err) {
+                            if (!err) {
+                                fs.unlinkSync(file.path);
+                                generatePreviews();
+                            }
+                            counter--;
                         });
+                        is.pipe(os);
                     }
                 }
             })
