@@ -3,6 +3,12 @@ jquery-file-upload-middleware
 
 jQuery-File-Upload Express.js middleware. Based on the server code of [jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload)
 
+Installation:
+
+```
+    $ npm install jquery-file-upload-middleware
+```
+
 Usage:
 
 ```javascript
