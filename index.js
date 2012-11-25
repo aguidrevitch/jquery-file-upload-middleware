@@ -5,7 +5,7 @@ module.exports = function (options) {
         formidable = require('formidable'),
         imageMagick = require('imagemagick'),
         _ = require('lodash'),
-    // Since Node 0.8, .existsSync() moved from path to fs:
+        // Since Node 0.8, .existsSync() moved from path to fs:
         _existsSync = fs.existsSync || path.existsSync,
         utf8encode = function (str) {
             return unescape(encodeURIComponent(str));
@@ -73,13 +73,13 @@ module.exports = function (options) {
             var that = this,
                 baseUrl = (options.ssl ? 'https:' : 'http:') +
                     '//' + req.headers.host;
-            this.delete_url = baseUrl +  req.originalUrl + '/' +encodeURIComponent(this.name);
-            this.url = baseUrl + options.uploadUrl + '/' +encodeURIComponent(this.name);
+            this.delete_url = baseUrl + req.originalUrl + '/' + encodeURIComponent(this.name);
+            this.url = baseUrl + options.uploadUrl + '/' + encodeURIComponent(this.name);
             Object.keys(options.imageVersions).forEach(function (version) {
                 if (_existsSync(
                     options.uploadDir + '/' + version + '/' + that.name
                 )) {
-                    that[version + '_url'] = baseUrl +  options.uploadUrl + '/' + version + '/' + encodeURIComponent(that.name);
+                    that[version + '_url'] = baseUrl + options.uploadUrl + '/' + version + '/' + encodeURIComponent(that.name);
                 }
             });
         }
@@ -165,7 +165,7 @@ module.exports = function (options) {
 
                     var generatePreviews = function () {
                         if (options.imageTypes.test(fileInfo.name) && _.keys(options.imageVersions).length) {
-                            Object.keys(options.imageVersions).forEach(function (version) {
+                            _.keys(options.imageVersions).forEach(function (version) {
                                 if (!_existsSync(options.uploadDir + '/' + version + '/'))
                                     throw new Error(options.uploadDir + '/' + version + '/' + ' not exists');
                                 counter++;
@@ -180,22 +180,24 @@ module.exports = function (options) {
                         }
                     }
 
-                    try {
-                        fs.renameSync(file.path, options.uploadDir + '/' + fileInfo.name);
-                        generatePreviews();
-                    } catch (e) {
-                        counter++;
-                        var is = fs.createReadStream(file.path);
-                        var os = fs.createWriteStream(options.uploadDir + '/' + fileInfo.name);
-                        is.on('end', function(err) {
-                            if (!err) {
-                                fs.unlinkSync(file.path);
-                                generatePreviews();
-                            }
-                            counter--;
-                        });
-                        is.pipe(os);
-                    }
+                    counter++;
+                    fs.rename(file.path, options.uploadDir + '/' + fileInfo.name, function (err) {
+                        if (!err) {
+                            generatePreviews();
+                            finish();
+                        } else {
+                            var is = fs.createReadStream(file.path);
+                            var os = fs.createWriteStream(options.uploadDir + '/' + fileInfo.name);
+                            is.on('end', function (err) {
+                                if (!err) {
+                                    fs.unlinkSync(file.path);
+                                    generatePreviews();
+                                }
+                                finish();
+                            });
+                            is.pipe(os);
+                        }
+                    });
                 }
             })
             .on('aborted', function () {
