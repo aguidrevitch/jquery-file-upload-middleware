@@ -36,6 +36,7 @@ On the frontend:
 
 Other options and their default values:
 ```javascript
+{
     tmpDir: '/tmp',
     maxPostSize: 11000000000, // 11 GB
     minFileSize: 1,
@@ -55,6 +56,7 @@ Other options and their default values:
         allowOrigin: '*',
         allowMethods: 'OPTIONS, HEAD, GET, POST, PUT, DELETE'
     }
+}
 ```
 
 ## License
