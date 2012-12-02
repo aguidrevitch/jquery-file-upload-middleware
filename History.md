@@ -1,3 +1,13 @@
+0.0.4 / 2012-12-02
+==================
+
+  * Syntax changed
+  * middleware now provides 'begin','end','abort' events
+  * if file was renamed during upload to avoid conflict,
+    new field 'originalName' keeps original name
+  * dynamic uploadDir and uploadUrl
+  * upload.getFiles() added, see README.md for example
+
 0.0.3 / 2012-11-25
 ==================
 
