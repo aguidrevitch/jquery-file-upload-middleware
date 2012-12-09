@@ -16,15 +16,26 @@ Usage:
         upload = require('jquery-file-upload-middleware');
 
     var app = express();
+
+    // configure upload middleware
+    upload.configure({
+        uploadDir: __dirname + '/public/uploads',
+        uploadUrl: '/uploads',
+        imageVersions: {
+            thumbnail: {
+                width: 80,
+                height: 80
+            }
+        }
+    });
+
     app.configure(function () {
         ...
-        app.use('/upload', upload.fileHandler({
-            uploadDir: __dirname + '/public/uploads',
-            uploadUrl: '/uploads'
-        }));
+        app.use('/upload', upload.fileHandler());
         app.use(express.bodyParser());
         ...
     });
+
 ```
 
 On the frontend:
@@ -34,13 +45,27 @@ On the frontend:
    <script>$('#fileupload').fileupload({ dataType: 'json' })</script>
 ```
 
+Overriding global configuration
+
+```javascript
+
+    app.use('/upload2', upload.fileHandler({
+        uploadDir: __dirname + '/public/uploads2',
+        uploadUrl: '/uploads2',
+        imageVersions: {
+            thumbnail: {
+                width: 100,
+                height: 100
+            }
+        }
+    }));
+
+```
+
 More sophisticated example - Events
 
 ```javascript
-        app.use('/upload', upload.fileHandler({
-            uploadDir: __dirname + '/public/uploads',
-            uploadUrl: '/uploads'
-        }));
+        app.use('/upload', upload.fileHandler());
 
         // events
         upload.on('begin', function (fileInfo) { ... });
@@ -66,19 +91,23 @@ More sophisticated example - Events
 Dynamic upload directory and url, isolating user files:
 
 ```javascript
+        upload.configure({
+            imageVersions: {
+                thumbnail: {
+                    width: 80,
+                    height: 80
+                }
+            }
+        });
+
         app.use('/upload', function (req, res, next) {
+            // imageVersions are taken from upload.configure()
             upload.fileHandler({
                 uploadDir: function () {
                     return __dirname + '/public/uploads/' + req.sessionID
                 },
                 uploadUrl: function () {
                     return '/uploads/' + req.sessionID
-                },
-                imageVersions: {
-                    thumbnail: {
-                        width: 80,
-                        height: 80
-                    }
                 }
             })(req, res, next);
         });
@@ -94,12 +123,6 @@ Getting uploaded files mapped to their fs locations:
                 },
                 uploadUrl: function () {
                     return '/uploads/' + req.sessionID
-                },
-                imageVersions: {
-                    thumbnail: {
-                        width: 80,
-                        height: 80
-                    }
                 }
             }, function (files) {
                 //  {
@@ -112,6 +135,24 @@ Getting uploaded files mapped to their fs locations:
                 //      }
                 //  }
                 res.json(files);
+            });
+        });
+```
+
+Passing uploaded files down the request chain:
+
+```javascript
+        app.use('/api', function (req, res, next) {
+            upload.getFiles({
+                uploadDir: function () {
+                    return __dirname + '/public/uploads/' + req.sessionID
+                },
+                uploadUrl: function () {
+                    return '/uploads/' + req.sessionID
+                }
+            }, function (files) {
+                res.jquploadfiles = files;
+                next();
             });
         });
 ```
@@ -144,7 +185,3 @@ Other options and their default values:
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
-
-
-
-

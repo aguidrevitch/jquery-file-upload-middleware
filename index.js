@@ -58,6 +58,8 @@ var FileHandler = function (middleware, options, callback) {
 var EventEmitter = require('events').EventEmitter;
 var JqueryFileUploadMiddleware = function () {
     EventEmitter.call(this);
+    // setting default options
+    this.options = this.prepareOptions({});
 };
 require('util').inherits(JqueryFileUploadMiddleware, EventEmitter);
 
@@ -83,7 +85,7 @@ JqueryFileUploadMiddleware.prototype.prepareOptions = function (options) {
         }
     }, options);
 
-    _.each(['uploadDir', 'uploadUrl', 'deleteUrl'], function (key) {
+    _.each(['uploadDir', 'uploadUrl'], function (key) {
         if (!_.isFunction(options[key])) {
             var originalValue = options[key];
             options[key] = function () {
@@ -95,12 +97,21 @@ JqueryFileUploadMiddleware.prototype.prepareOptions = function (options) {
     return options;
 }
 
+JqueryFileUploadMiddleware.prototype.configure = function (options) {
+    this.options = this.prepareOptions(options);
+};
+
 JqueryFileUploadMiddleware.prototype.fileHandler = function (options) {
-    return FileHandler(this, this.prepareOptions(options));
+    return FileHandler(this, this.prepareOptions(_.extend( this.options, options )));
 };
 
 JqueryFileUploadMiddleware.prototype.getFiles = function (options, callback) {
-    options = this.prepareOptions(options);
+    if (_.isFunction(options)) {
+        callback = options;
+        options = this.options;
+    } else {
+        options = this.prepareOptions(_.extend( this.options, options ));
+    }
 
     var files = {};
     var counter = 1;
