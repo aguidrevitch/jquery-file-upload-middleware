@@ -1,3 +1,9 @@
+0.0.6 / 2012-12-20
+==================
+
+  * #6 hostname option added
+  * upload.fileManager() added, which allows moving file
+
 0.0.5 / 2012-12-12
 ==================
 

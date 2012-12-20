@@ -113,18 +113,74 @@ Dynamic upload directory and url, isolating user files:
         });
 ```
 
+Moving uploaded files to different dir:
+
+```javascript
+        app.use('/api', function (req, res, next) {
+            req.filemanager = upload.fileManager();
+            next();
+        });
+
+        app.use('/api/endpoint', function (req, res, next) {
+            // your real /api handler that will actually move the file
+            ...
+            // req.filemanager.move(filename, path, function (err, result))
+            req.filemanager.move('SomeFile.jpg', 'project1', function (err, result) {
+                // SomeFile.jpg gets moved from uploadDir/SomeFile.jpg to
+                // uploadDir/project1/SomeFile.jpg
+                // if path is relative (no leading slash), uploadUrl will
+                // be used to generate relevant urls,
+                // for absolute paths urls are not generated
+                if (!err) {
+                    // result structure
+                    // {
+                    //     filename: 'SomeFile.jpg',
+                    //     url: '/uploads/project1/SomeFile.jpg',
+                    //     thumbail_url : '/uploads/project1/thumbnail/SomeFile.jpg'
+                    // }
+                    ...
+                } else {
+                    console.log(err);
+                }
+            });
+        });
+```
+
+Moving uploaded files out of uploadDir:
+
+```
+        app.use('/api', function (req, res, next) {
+            var user = db.find(...);
+
+            req.filemanager = upload.fileManager({
+                targetDir: __dirname + '/public/u/' + user._id,
+                targetUrl: '/u/' + user._id,
+            });
+
+            // or
+            req.filemanager = upload.fileManager({
+                targetDir: function () {
+                    return __dirname + '/public/u/' + user._id
+                },
+                targetUrl: function () {
+                    return'/u/' + user._id
+                }
+            });
+            ...
+            req.filemanager.move(req.body.filename, 'profile', function (err, result) {
+                // file gets moved to __dirname + '/public/u/' + user._id + '/profile'
+                if (!err) {
+
+                }
+            });
+        });
+```
+
 Getting uploaded files mapped to their fs locations:
 
 ```javascript
         app.use('/list', function (req, res, next) {
-            upload.getFiles({
-                uploadDir: function () {
-                    return __dirname + '/public/uploads/' + req.sessionID
-                },
-                uploadUrl: function () {
-                    return '/uploads/' + req.sessionID
-                }
-            }, function (files) {
+            upload.fileManager().getFiles(function (files) {
                 //  {
                 //      "00001.MTS": {
                 //          "path": "/home/.../public/uploads/ekE6k4j9PyrGtcg+SA6a5za3/00001.MTS"
@@ -137,22 +193,19 @@ Getting uploaded files mapped to their fs locations:
                 res.json(files);
             });
         });
-```
 
-Passing uploaded files down the request chain:
+        // with dynamic upload directories
 
-```javascript
-        app.use('/api', function (req, res, next) {
-            upload.getFiles({
+        app.use('/list', function (req, res, next) {
+            upload.fileManager({
                 uploadDir: function () {
                     return __dirname + '/public/uploads/' + req.sessionID
                 },
                 uploadUrl: function () {
                     return '/uploads/' + req.sessionID
                 }
-            }, function (files) {
-                res.jquploadfiles = files;
-                next();
+            }).getFiles(function (files) {
+                res.json(files);
             });
         });
 ```
@@ -164,6 +217,11 @@ Other options and their default values:
     tmpDir: '/tmp',
     uploadDir: __dirname + '/public/uploads',
     uploadUrl: '/uploads',
+    targetDir: uploadDir,
+    targetUrl: uploadUrl,
+    ssl: false,
+    hostname: null, // in case your reverse proxy doesn't set Host header
+                    // eg 'google.com'
     maxPostSize: 11000000000, // 11 GB
     minFileSize: 1,
     maxFileSize: 10000000000, // 10 GB

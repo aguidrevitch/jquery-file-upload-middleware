@@ -1,61 +1,6 @@
 var _ = require('lodash'),
-    fs = require('fs');
+    EventEmitter = require('events').EventEmitter;
 
-var FileHandler = function (middleware, options, callback) {
-
-    return function (req, res, next) {
-        res.set({
-            'Access-Control-Allow-Origin': options.accessControl.allowOrigin,
-            'Access-Control-Allow-Methods': options.accessControl.allowMethods
-        });
-        var UploadHandler = require('./lib/uploadhandler')(options);
-        var handler = new UploadHandler(req, res, function (result, redirect) {
-            if (redirect) {
-                res.redirect(redirect.replace(/%s/, encodeURIComponent(JSON.stringify(result))));
-            } else {
-                res.set({
-                    'Content-Type': (req.headers.accept || '').indexOf('application/json') !== -1
-                        ? 'application/json'
-                        : 'text/plain'
-                });
-                res.json(200, result);
-            }
-        });
-
-        handler.on('begin', function (fileInfo) {
-            middleware.emit('begin', fileInfo);
-        });
-        handler.on('end', function (fileInfo) {
-            middleware.emit('end', fileInfo);
-        });
-        handler.on('abort', function (fileInfo) {
-            middleware.emit('abort', fileInfo);
-        });
-        handler.on('error', function (e) {
-            middleware.emit('abort', e);
-        });
-
-        switch (req.method) {
-            case 'OPTIONS':
-                res.end();
-                break;
-            case 'HEAD':
-            case 'GET':
-                handler.get();
-                break;
-            case 'POST':
-                handler.post();
-                break;
-            case 'DELETE':
-                handler.destroy();
-                break;
-            default:
-                res.send(405);
-        }
-    }
-};
-
-var EventEmitter = require('events').EventEmitter;
 var JqueryFileUploadMiddleware = function () {
     EventEmitter.call(this);
     // setting default options
@@ -102,44 +47,11 @@ JqueryFileUploadMiddleware.prototype.configure = function (options) {
 };
 
 JqueryFileUploadMiddleware.prototype.fileHandler = function (options) {
-    return FileHandler(this, this.prepareOptions(_.extend( this.options, options )));
+    return require('./lib/filehandler')(this, this.prepareOptions(_.extend(this.options, options)));
 };
 
-JqueryFileUploadMiddleware.prototype.getFiles = function (options, callback) {
-    if (_.isFunction(options)) {
-        callback = options;
-        options = this.options;
-    } else {
-        options = this.prepareOptions(_.extend( this.options, options ));
-    }
-
-    var files = {};
-    var counter = 1;
-    var finish = function () {
-        if (!--counter)
-            callback(files);
-    };
-
-    fs.readdir(options.uploadDir(), _.bind(function (err, list) {
-        _.each(list, function (name) {
-            var stats = fs.statSync(options.uploadDir() + '/' + name);
-            if (stats.isFile()) {
-                files[name] = {
-                    path: options.uploadDir() + '/' + name
-                };
-                _.each(options.imageVersions, function (value, version) {
-                    counter++;
-                    fs.exists(options.uploadDir() + '/' + version + '/' + name, function (exists) {
-                        if (exists)
-                            files[name][version] = options.uploadDir() + '/' + version + '/' + name;
-                        finish();
-                    });
-                });
-            }
-        }, this);
-        finish();
-    }, this));
+JqueryFileUploadMiddleware.prototype.fileManager = function (options) {
+    return require('./lib/filemanager')(this, this.prepareOptions(_.extend(this.options, options)));
 };
 
 module.exports = new JqueryFileUploadMiddleware();
-
