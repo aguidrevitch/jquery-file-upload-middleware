@@ -1,3 +1,9 @@
+0.0.7 / 2012-12-25
+==================
+
+  * 'delete' event merged in, 
+    thanks to https://github.com/soomtong
+
 0.0.6 / 2012-12-20
 ==================
 
