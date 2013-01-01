@@ -234,6 +234,7 @@ Other options and their default values:
             height: 80
         }
     },
+    imageArgs: ['-auto-orient'],
     accessControl: {
         allowOrigin: '*',
         allowMethods: 'OPTIONS, HEAD, GET, POST, PUT, DELETE'

@@ -1,3 +1,8 @@
+0.0.8 / 2013-01-01
+==================
+
+  * #11 update resize with cropping custom options : imageArgs
+
 0.0.7 / 2012-12-25
 ==================
 
