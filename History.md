@@ -2,6 +2,7 @@
 ==================
 
   * #11 update resize with cropping custom options : imageArgs
+    thanks to https://github.com/soomtong
 
 0.0.7 / 2012-12-25
 ==================

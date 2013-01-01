@@ -242,6 +242,10 @@ Other options and their default values:
 }
 ```
 
+## Contributors
+
+   * [@soomtong](http://twitter.com/soomtong)
+
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
