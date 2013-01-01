@@ -244,7 +244,7 @@ Other options and their default values:
 
 ## Contributors
 
-   * [@soomtong](http://twitter.com/soomtong)
+   * [@soomtong](http://github.com/soomtong)
 
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
