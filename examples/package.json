@@ -1,0 +1,10 @@
+{
+    "name":"examples",
+    "version":"0.0.1",
+    "dependencies":{
+        "express":">= 3.0.0",
+        "consolidate":">= 0.4.0",
+        "swig":">= 0.12.0",
+        "jquery-file-upload-middleware": ">= 0.0.8"
+    }
+}
