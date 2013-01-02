@@ -8,7 +8,7 @@
 * */
 var express = require('express'),
     http = require('http'),
-    upload = require('jquery-file-upload-middleware');
+    upload = require('../index');
 
 var cons = require('consolidate'),
     swig = require('swig');
@@ -126,8 +126,9 @@ app.get('/location/input', function (req, res) {
 });
 
 app.post('/location/input', function (req, res) {
-    console.log(req.body, req.files);
-    res.send('<p>' + req.body + '</p>' + '<p>' + req.files + '</p>');
+    console.log('\n===============================================\n');
+    console.log(req.body);
+    res.send(req.body);
 });
 
 
