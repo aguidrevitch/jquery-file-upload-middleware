@@ -8,7 +8,8 @@
 * */
 var express = require('express'),
     http = require('http'),
-    upload = require('../index');
+    //upload = require('../index');
+    upload = require('jquery-file-upload-middleware');      // don't work 0.0.8 && update > 0.0.8
 
 var cons = require('consolidate'),
     swig = require('swig');
