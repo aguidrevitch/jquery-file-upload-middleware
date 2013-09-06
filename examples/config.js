@@ -46,7 +46,7 @@ exports.resizeVersion = {
 };
 
 exports.directors = {
-    temp: './public/tmp',
+    temp: './tmp',
 
     default: '/public/uploads/default',
     default_url: '/uploads/default',

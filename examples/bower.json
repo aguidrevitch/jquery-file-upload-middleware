@@ -1,0 +1,13 @@
+{
+    "name": "jquery-file-upload-middleware",
+    "version": "0.0.1",
+    "ignore": [
+        ".jshintrc",
+        "**/*.txt"
+    ],
+    "dependencies": {
+        "jquery-file-upload": "8.8.5"
+    },
+    "devDependencies": {
+    }
+}

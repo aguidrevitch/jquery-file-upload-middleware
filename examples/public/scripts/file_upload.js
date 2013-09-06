@@ -66,13 +66,13 @@ $('#location_gallery').fileupload({
                 row.find('.name a').text(file.name);
                 if (file.url) {
                     row.find('.preview').append('<a><img></a>')
-                        .find('img').prop('src', file.small_url);
+                        .find('img').prop('src', file.smallUrl);
                     row.find('a').prop('rel', 'gallery');
                 }
                 row.find('a').prop('href', file.url);
-                row.find('.delete button')
+                row.find('.delete')
                     .attr('data-type', file.delete_type)
-                    .attr('data-url', file.delete_url);
+                    .attr('data-url', file.deleteUrl);
                 // add file data input
                 row.append('<input type="hidden" name="galleryImage[]">')
                     .find('input[name="galleryImage[]"]').val(file.name);
@@ -151,13 +151,13 @@ $('#location_cover').fileupload({
                 row.find('.name a').text(file.name);
                 if (file.url) {
                     row.find('.preview').append('<a><img></a>')
-                        .find('img').prop('src', file.medium_url);
+                        .find('img').prop('src', file.mediumUrl);
                     row.find('a').prop('rel', 'gallery');
                 }
                 row.find('a').prop('href', file.url);
                 row.find('.delete button')
                     .attr('data-type', file.delete_type)
-                    .attr('data-url', file.delete_url);
+                    .attr('data-url', file.deleteUrl);
                 // add file data input
                 row.append('<input type="hidden" name="excerptImage">')
                     .find('input[name="excerptImage"]').val(file.name);

@@ -8,11 +8,9 @@
 * */
 var express = require('express'),
     http = require('http'),
-    //upload = require('../index');
-    upload = require('jquery-file-upload-middleware');      // don't work 0.0.8 && update > 0.0.8
+    upload = require('../');
 
-var cons = require('consolidate'),
-    swig = require('swig');
+var swig = require('swig');
 
 
 // configuration
@@ -26,13 +24,10 @@ var app = express();
 
 
 // set template engine
-app.engine('html', cons.swig);
-swig.init({
-    root: __dirname + '/views',
-    allowErrors: true,
-    cache: false
+app.engine('html', swig.renderFile);
+swig.setDefaults({
+    cache: false   // default 'memory'
 });
-
 
 
 // jquery-file-upload helper
@@ -74,6 +69,7 @@ upload.on('end', function (fileInfo) {
 
 upload.on('delete', function (fileName) {
     // remove file info
+    console.log("files remove complete");
     console.log(fileName);
 });
 
@@ -114,7 +110,11 @@ app.configure('production', function () {
 * routes
 * */
 app.get('/', function (req, res) {
-    res.send('Call this url in browser : http://localhost:3001/location/input');
+    var html = [
+        '<p>Call this url in browser : http://localhost:3001/location/input <a href="/location/input">Go</a></p>',
+        '<p>Call this url in browser : http://localhost:3001/upload/location/list <a href="/upload/location/list">Go</a></p>'
+    ].join('');
+    res.send(html);
 });
 
 
@@ -140,4 +140,5 @@ app.post('/location/input', function (req, res) {
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
     console.log("access url /location/input");
+    console.log("access url /upload/location/list");
 });
