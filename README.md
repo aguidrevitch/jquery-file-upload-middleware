@@ -1,6 +1,39 @@
 jquery-file-upload-middleware
 =============================
 
+### Personal Patch Repository
+
+Please comeback [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/) lol
+
+- use bower to install jquery-file-upload (planed)
+- use not npm to install jquery-file-upload-middleware
+- use this repository by
+
+```json
+{
+    "name": "your project",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "express": "3.3.x",
+        "jquery-file-upload-middleware": "git://github.com/soomtong/jquery-file-upload-middleware.git",
+        "swig": "1.0.x",
+        "imagemagick": "0.1.x"
+    },
+    "devDependencies": {
+        "nodeunit":"*"
+    }
+}
+```
+
+
+
+
+
+---
+
+## Readme will update later
+
 jQuery-File-Upload Express.js middleware. Based on the server code of [jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload)
 
 Installation:

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="/lib/jquery-file-upload/css/jquery.fileupload-ui.css">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css" />
+</head>
+<body>
+<div id="contain">
+
+    <div id="main" role="main">
+
+        <div class="article">
+            <form id="location_upload" action="/location/input" method="post">
+
+                <fieldset class="form-location">
+                    <legend>Upload 1</legend>
+                    <div class="step1">
+                        <p>
+                            <label>Title</label>
+                            <input type="text" name="title" value="" maxlength="50" placeholder="Title" required="required">
+                        </p>
+                        <div id="gallery_dropzone" class="fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <span>Gallery Image Upload</span>
+                                <input id="location_gallery" type="file" name="gallery[]" multiple>
+                            </span>
+                            <div id="gallery_progress" class="progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="bar" style="width:0%;"></div>
+                            </div>
+                            <ul id="upload_gallery_files"></ul>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-location">
+                    <legend>Upload 2</legend>
+                    <div class="step2">
+                        <p>
+                            <label>Excerpt</label>
+                            <textarea name="excerpt" cols="30" rows="2"></textarea>
+                        </p>
+                        <div id="cover_dropzone" class="fileupload-buttonbar">
+                            <span class="btn fileinput-button">
+                                <span>Cover Image Upload</span>
+                                <input id="location_cover" type="file">
+                            </span>
+                            <div id="cover_progress" class="progressbar" role="progressbar" aria-valuemin="0"
+                                 aria-valuemax="100">
+                                <div class="bar" style="width:0%;"></div>
+                            </div>
+                            <ul id="upload_cover_files"></ul>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="bg-location-submit">
+                    <button class="bg-button" type="submit">Submit</button>
+                    <button class="bg-button" type="reset">Cancel</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/lib/blueimp-load-image/js/load-image.min.js"></script>
+<script src="/lib/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="/lib/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript" src="/scripts/file_upload.js"></script>
+</body>
+</html>
