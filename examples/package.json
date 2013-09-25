@@ -1,0 +1,8 @@
+{
+    "name":"examples",
+    "version":"0.0.1",
+    "dependencies":{
+        "express":"3.3.x",
+        "swig":"1.0.x"
+    }
+}
