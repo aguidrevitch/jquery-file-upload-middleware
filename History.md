@@ -1,7 +1,7 @@
-0.0.9 / 2013-09-06
+0.0.9 / 2013-10-07
 ==================
 
-  * update today's jquery-file-upload
+  * compatibility with jQuery File Upload Plugin 5.32.6
 
 0.0.8 / 2013-01-01
 ==================
