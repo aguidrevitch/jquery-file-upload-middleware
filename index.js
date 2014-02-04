@@ -1,5 +1,6 @@
 var _ = require('lodash'),
-    EventEmitter = require('events').EventEmitter;
+    EventEmitter = require('events').EventEmitter,
+    os = require("os");
 
 var JqueryFileUploadMiddleware = function () {
     EventEmitter.call(this);
@@ -10,7 +11,7 @@ require('util').inherits(JqueryFileUploadMiddleware, EventEmitter);
 
 JqueryFileUploadMiddleware.prototype.prepareOptions = function (options) {
     options = _.extend({
-        tmpDir: '/tmp',
+        tmpDir: os.tmpdir(),
         uploadDir: __dirname + '/public/files',
         uploadUrl: '/files/',
         maxPostSize: 11000000000, // 11 GB
