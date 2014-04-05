@@ -270,6 +270,7 @@ Other options and their default values:
 ## Contributors
 
    * [@soomtong](http://github.com/soomtong)
+   * [@mickeyckm](http://github.com/mickeyckm)
 
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
