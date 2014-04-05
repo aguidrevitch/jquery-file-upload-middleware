@@ -78,7 +78,8 @@ More sophisticated example - Events
             //     delete_type: 'DELETE',
             //     delete_url: 'http://yourhost/upload/3%20(3).jpg',
             //     url: 'http://yourhost/uploads/3%20(3).jpg',
-            //     thumbnail_url: 'http://youhost/uploads/thumbnail/3%20(3).jpg' 
+            //     thumbnail_url: 'http://youhost/uploads/thumbnail/3%20(3).jpg',
+            //     path: '/path/to/your/project/upload/3%20(3).jpg'
             // }
         });
         upload.on('abort', function (fileInfo) { ... });
@@ -103,7 +104,8 @@ More sophisticated example - Callbacks
 	            //     delete_type: 'DELETE',
 	            //     delete_url: 'http://yourhost/upload/3%20(3).jpg',
 	            //     url: 'http://yourhost/uploads/3%20(3).jpg',
-	            //     thumbnail_url: 'http://youhost/uploads/thumbnail/3%20(3).jpg' 
+	            //     thumbnail_url: 'http://youhost/uploads/thumbnail/3%20(3).jpg',
+                //     path: '/path/to/your/project/upload/3%20(3).jpg'
 	            // }
 	        },
 	        abort: function (fileInfo) { ... },
@@ -111,7 +113,8 @@ More sophisticated example - Callbacks
 	        del: function (fileInfo) { ... },
 	        err: function (e) {
 	            console.log(e.message);
-	        }        }));
+	        }
+        }));
 ```
 
 Dynamic upload directory and url, isolating user files:
