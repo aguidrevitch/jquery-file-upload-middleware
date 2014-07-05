@@ -8,7 +8,7 @@
     "express",
     "middleware"
   ],
-  "version": "0.1.2",
+  "version": "0.1.3",
   "dependencies": {
     "formidable": ">=1.0.11",
     "imagemagick": ">=0.1.2",
@@ -29,6 +29,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "_id": "jquery-file-upload-middleware@0.1.2",
+  "_id": "jquery-file-upload-middleware@0.1.3",
   "license": "MIT"
 }
