@@ -1,4 +1,9 @@
-0.1.1 / 2014-06-08
+0.1.3 / 2014-07-05
+==================
+
+  * #46 merged in (reduce synchronous disk IO operations)
+
+0.1.2 / 2014-06-08
 ==================
 
   * #31 merged in
