@@ -279,6 +279,7 @@ Other options and their default values:
    * [@soomtong](http://github.com/soomtong)
    * [@gsarwohadi](https://github.com/gsarwohadi)
    * [@peecky](https://github.com/peecky)
+   * [@tonyspiro](https://github.com/tonyspiro)
 
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
