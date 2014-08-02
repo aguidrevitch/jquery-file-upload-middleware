@@ -1,3 +1,8 @@
+0.1.5 / 2014-08-02
+==================
+
+  * #31 request and response objects passed to event handlers
+
 0.1.4 / 2014-07-06
 ==================
 
