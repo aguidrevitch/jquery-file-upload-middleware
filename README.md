@@ -280,6 +280,7 @@ Other options and their default values:
    * [@gsarwohadi](https://github.com/gsarwohadi)
    * [@peecky](https://github.com/peecky)
    * [@tonyspiro](https://github.com/tonyspiro)
+   * [@derjust](https://github.com/derjust)
 
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
