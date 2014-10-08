@@ -1,3 +1,23 @@
+0.1.7 / 2014-10-09
+==================
+
+  * #58 improved support for IE9
+
+0.1.6 / 2014-10-04
+==================
+
+  * #56 avoid path traversal in DELETE requests
+
+0.1.5 / 2014-08-02
+==================
+
+  * #31 request and response objects passed to event handlers
+
+0.1.4 / 2014-07-06
+==================
+
+  * #53 documentation update
+
 0.1.3 / 2014-07-05
 ==================
 

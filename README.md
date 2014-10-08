@@ -100,7 +100,7 @@ More sophisticated example - Events
         app.use('/upload', upload.fileHandler());
 
         // events
-        upload.on('begin', function (fileInfo) { 
+        upload.on('begin', function (fileInfo, req, res) { 
             // fileInfo structure is the same as returned to browser
             // { 
             //     name: '3 (3).jpg',
@@ -113,10 +113,10 @@ More sophisticated example - Events
             //     thumbnail_url: 'http://youhost/uploads/thumbnail/3%20(3).jpg' 
             // }
         });
-        upload.on('abort', function (fileInfo) { ... });
-        upload.on('end', function (fileInfo) { ... });
-        upload.on('delete', function (fileInfo) { ... });
-        upload.on('error', function (e) {
+        upload.on('abort', function (fileInfo, req, res) { ... });
+        upload.on('end', function (fileInfo, req, res) { ... });
+        upload.on('delete', function (fileInfo, req, res) { ... });
+        upload.on('error', function (e, req, res) {
             console.log(e.message);
         });
 ```
@@ -278,6 +278,9 @@ Other options and their default values:
 
    * [@soomtong](http://github.com/soomtong)
    * [@gsarwohadi](https://github.com/gsarwohadi)
+   * [@peecky](https://github.com/peecky)
+   * [@tonyspiro](https://github.com/tonyspiro)
+   * [@derjust](https://github.com/derjust)
 
 ## License
 Copyright (c) 2012 [Aleksandr Guidrevitch](http://aguidrevitch.blogspot.com/)
