@@ -28,7 +28,8 @@ JqueryFileUploadMiddleware.prototype.prepareOptions = function (options) {
         accessControl: {
             allowOrigin: '*',
             allowMethods: 'OPTIONS, HEAD, GET, POST, PUT, DELETE'
-        }
+        },
+        force: false //Overwrite file with same name
     }, options);
 
     _.each(['uploadDir', 'uploadUrl'], function (key) {
