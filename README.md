@@ -270,7 +270,8 @@ Other options and their default values:
     accessControl: {
         allowOrigin: '*',
         allowMethods: 'OPTIONS, HEAD, GET, POST, PUT, DELETE'
-    }
+    },
+    force: false // Overwrite files with the same name on upload
 }
 ```
 
