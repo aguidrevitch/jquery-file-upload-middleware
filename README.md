@@ -20,7 +20,7 @@ Usage:
     // configure upload middleware
     upload.configure({
         uploadDir: __dirname + '/public/uploads',
-        uploadUrl: '/uploads',
+        uploadUrl: '/upload',
         imageVersions: {
             thumbnail: {
                 width: 80,
