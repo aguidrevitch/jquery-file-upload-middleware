@@ -253,6 +253,7 @@ Other options and their default values:
     targetDir: uploadDir,
     targetUrl: uploadUrl,
     ssl: false,
+    prefixUuid: false, // Prefix every created file with a UUID. Important if there are multiple node processes working on the same folder (iisnode for example) serving requests
     hostname: null, // in case your reverse proxy doesn't set Host header
                     // eg 'google.com'
     maxPostSize: 11000000000, // 11 GB
