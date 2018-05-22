@@ -1,34 +1,62 @@
 {
-  "name": "jquery-file-upload-middleware",
-  "author": "Aleksandr Guidrevitch <aguidrevitch@gmail.com>",
+  "_from": "github:fangj/jquery-file-upload-middleware",
+  "_id": "jquery-file-upload-middleware@0.1.7",
+  "_inBundle": false,
+  "_location": "/jquery-file-upload-middleware",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "jquery-file-upload-middleware@github:fangj/jquery-file-upload-middleware",
+    "name": "jquery-file-upload-middleware",
+    "escapedName": "jquery-file-upload-middleware",
+    "rawSpec": "github:fangj/jquery-file-upload-middleware",
+    "saveSpec": "github:fangj/jquery-file-upload-middleware",
+    "fetchSpec": null,
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:fangj/jquery-file-upload-middleware#999e430e5f207bc2ae8ded31b1b54d538cb95dab",
+  "_spec": "jquery-file-upload-middleware@github:fangj/jquery-file-upload-middleware",
+  "_where": "D:\\project\\lims_next_x1\\extra\\file_service",
+  "author": {
+    "name": "Aleksandr Guidrevitch",
+    "email": "aguidrevitch@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/aguidrevitch/jquery-file-upload-middleware/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "async": "*",
+    "formidable": ">=1.0.11",
+    "imagemagick": ">=0.1.2",
+    "lodash": ">= 0.9.2",
+    "mkdirp": ">= 0.3.4"
+  },
+  "deprecated": false,
   "description": "jQuery-File-Upload Express.js Middleware",
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 0.8.8"
+  },
+  "homepage": "https://github.com/aguidrevitch/jquery-file-upload-middleware#readme",
   "keywords": [
     "jquery",
     "upload",
     "express",
     "middleware"
   ],
-  "version": "0.1.7",
-  "dependencies": {
-    "formidable": ">=1.0.11",
-    "imagemagick": ">=0.1.2",
-    "lodash": ">= 0.9.2",
-    "mkdirp": ">= 0.3.4",
-    "async": "*"
-  },
-  "engines": {
-    "node": ">= 0.8.8"
-  },
+  "license": "MIT",
+  "main": "./index.js",
+  "name": "jquery-file-upload-middleware",
   "repository": {
     "type": "git",
     "url": "git://github.com/aguidrevitch/jquery-file-upload-middleware.git"
   },
-  "main": "./index.js",
-  "readmeFilename": "README.md",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "_id": "jquery-file-upload-middleware@0.1.7",
-  "license": "MIT"
+  "version": "0.1.7"
 }
