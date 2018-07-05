@@ -5,10 +5,10 @@
 to run
 
 ```
-project > npm insatll
+project > npm install
 project > cd examples
-project/examples > npm insatll
-project/examples > bower insatll
+project/examples > npm install
+project/examples > bower install
 project/examples > node app.js
 ```
 
